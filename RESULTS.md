@@ -287,3 +287,11 @@ Gemini 3.1 Pro, real files:
 | report report (22k) | 7698 | 2036 (2p, 3/4) | **1053 (1p)** | 4/4 (beats narrow-baseline) |
 **nyx-v2 = ~50% fewer tokens than narrow-baseline, ~86-87% fewer than text, equal-or-better accuracy.**
 Confirmed on real content, not synthetic. This is the production result.
+
+## T21: multi-file single-page packing — WORKS + found a production bug
+- 3 small files in one Gemini page: 3/3 cross-file recall, 55% fewer tokens than text.
+- BUG FOUND: files containing the ↵ (U+21B5) reflow-sentinel make reflow() BAIL -> content
+  renders unpacked (6 pages instead of 1). Production must neutralizeSentinel() before reflow.
+  narrow-baseline's transform.ts has maybeReflow() doing exactly this — our v2 must too.
+- Multi-file packing is a killer feature for codebase-wide tasks: pack many files into one
+  flat-billed Gemini page, ask cross-file questions. Needs the sentinel fix to work reliably.

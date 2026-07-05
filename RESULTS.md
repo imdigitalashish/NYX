@@ -121,3 +121,24 @@ Billed image tokens by geometry, measured live:
 - Gemini -> wide flat-billed pages (our 49-75% win).
 - Opus/GPT -> narrow-baseline-style minimal-pixel pages (narrow-baseline already near-optimal there; our T1
   density-knee backoff to ~22k/page is the only improvement).
+
+## CRITICAL FINDING — readability depends on the model's vision encoder
+Tested Opus 4.8 and GPT-5.4 across ALL densities, including LOW density (3000 chars/page,
+large glyphs):
+| provider | cap3000 (big glyphs) | cap6000 | cap12000 |
+|---|---|---|---|
+| Opus 4.8 | 1/5 | 0/5 | 0/5 |
+| GPT-5.4 | 0/5 | 0/5 | 0/5 |
+
+Opus and GPT CANNOT read narrow-baseline's 5x8 bitmap-atlas glyphs at ANY density. This is not a
+density or method problem — their vision encoders don't OCR this synthetic bitmap font.
+(Gemini 3.1 Pro reads it fine — 5/5 at 22k/page.)
+
+### Consequence for the thesis
+- Nyx (and narrow-baseline's whole approach) is effectively a **Gemini-3.1-Pro-only** technique with
+  the current bitmap atlas. On Opus/GPT it saves ~15-18% tokens but at 0/5 accuracy = useless.
+- narrow-baseline's own docs already flagged Opus as weak; our data shows it's not weak, it's ~zero
+  on this atlas. The earlier "Opus 7/7" wins were on ANTI-ALIASED real-font renders through
+  Agency's Read (different path), NOT this bitmap atlas.
+- OPEN QUESTION (new thesis T9): does a real anti-aliased TrueType render (not the 5x8 atlas)
+  unlock Opus/GPT? If yes, the method generalizes. If no, it's Gemini-strongest forever.

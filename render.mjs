@@ -60,7 +60,10 @@ function avgLineLen(text) {
 async function renderFile(text, profile, compress) {
   const sparse = avgLineLen(text) < SPARSE_LINE_THRESHOLD;
   let src = text;
-  if (compress) src = compressText(text);
+  // Auto-enable compression for large docs (T34): above the single-page readability cap,
+  // stopword+vowel compression halves pages/tokens AND improves accuracy. Small docs skip it.
+  const autoCompress = compress || (profile.alwaysReflow && text.length > profile.maxCharsPerPage);
+  if (autoCompress) src = compressText(text);
   const doReflow = profile.alwaysReflow || sparse;
   // Neutralize any pre-existing ↵ sentinel so reflow packs instead of bailing (real files
   // may contain U+21B5, which would otherwise force an unpacked multi-page render).

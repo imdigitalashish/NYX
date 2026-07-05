@@ -30,7 +30,12 @@ byte-exact work, Read the file as text normally.
 
 2. **Render them to images.** Run, from the working directory:
    ```
-   node "$NYX/render.mjs" --out .nyx-cache <file1> <file2> ...
+   node "$NYX/render.mjs" --out .nyx-cache --provider gemini <file1> <file2> ...
+
+   Pass `--provider gemini` on Gemini models (best — one dense wide page, ~50% fewer tokens
+   than older geometry), `--provider opus` on Claude Opus (bigger glyphs it can read), or
+   `--provider gpt` / omit imaging entirely on GPT (it can't reliably OCR renders — read as
+   text). Add `--compress` for very large docs to drop stopwords/vowels and fit one page.
    ```
    This writes dense PNG pages into `.nyx-cache/` and prints a MANIFEST telling you
    exactly which page image(s) correspond to which source file, plus each file's

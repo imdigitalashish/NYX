@@ -61,15 +61,17 @@ async function renderFile(text, profile, compress) {
   const sparse = avgLineLen(text) < SPARSE_LINE_THRESHOLD;
   let src = text;
   if (compress) src = compressText(text);
-  // Reflow-packing fits content into fewer flat-billed pages. On Gemini (flat billing +
-  // ~36 char/tok ceiling) ALWAYS reflow — packing is strictly better. On Opus (pixel
-  // billing, needs legible rows) only reflow sparse content; keep dense one-line-per-row.
   const doReflow = profile.alwaysReflow || sparse;
   // Neutralize any pre-existing ↵ sentinel so reflow packs instead of bailing (real files
   // may contain U+21B5, which would otherwise force an unpacked multi-page render).
   const packed = doReflow ? (reflow(neutralizeSentinel(src)) ?? src) : src;
+  // Size-adaptive geometry (T28): the wide-page geometry only wins on LARGE docs (>~15k
+  // chars, where narrow-baseline would need 2+ pages). For small docs a narrow page is ~4% cheaper,
+  // so use the narrower width there. Only applies to flat-billing (Gemini) profiles.
+  let cols = profile.cols;
+  if (profile.alwaysReflow && packed.length < 15000) cols = Math.min(profile.cols, 312);
   const style = { aa: true, cellWBonus: profile.cellWBonus, cellHBonus: profile.cellHBonus };
-  const imgs = await renderTextToPngsWithCharLimit(packed, profile.cols, profile.maxCharsPerPage, style, profile.maxHeightPx);
+  const imgs = await renderTextToPngsWithCharLimit(packed, cols, profile.maxCharsPerPage, style, profile.maxHeightPx);
   return { sparse, imgs, compressedChars: src.length };
 }
 

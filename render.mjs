@@ -20,7 +20,7 @@ import { renderTextToPngsWithCharLimit, reflow, neutralizeSentinel, DENSE_CONTEN
 
 // ---- provider profiles (from measured billing + readability) ----
 const PROFILES = {
-  gemini: { cols: 468, maxCharsPerPage: 38000, cellWBonus: 0, cellHBonus: 0, maxHeightPx: 4096, alwaysReflow: true, note: 'flat billing: one wide dense page' },
+  gemini: { cols: 468, maxCharsPerPage: 24000, cellWBonus: 0, cellHBonus: 0, maxHeightPx: 4096, alwaysReflow: true, note: 'flat billing: ~24k chars/page, multiple pages for big docs (T33)' },
   opus:   { cols: 240, maxCharsPerPage: 22000, cellWBonus: 3, cellHBonus: 4, maxHeightPx: 2048, note: 'pixel billing: bigger glyphs, minimal pixels' },
 };
 const MIN_CHARS = 6000;

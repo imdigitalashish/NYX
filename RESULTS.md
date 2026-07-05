@@ -219,3 +219,22 @@ Optimal Gemini config: 2348px-wide single page, ~38k chars max, native 5x8 AA gl
 On Gemini this is the money result: half of narrow-baseline's cost, no accuracy loss.
 (Both at 3/5 on hard dense prose — the accuracy ceiling is the encoder, same for both;
 Nyx's advantage is purely token efficiency via flat-billing geometry + salience.)
+
+## T13: VLM-optimized micro-atlas (Tom Thumb 4x6) — tested, does NOT beat Spleen
+Built a real 4x6 hand-designed bitmap font (Tom Thumb, public domain) — crisp & legible
+(unlike downsampled Arial/Consolas which were garbage).
+
+Gemini (flat billing): micro-atlas reads ~3/5 at density ~36 — SAME as Spleen. No gain,
+because Gemini billing is flat regardless of pixels; smaller glyphs don't reduce tokens.
+
+Opus (pixel billing, 3 trials):
+| render | density | accuracy |
+|---|---|---|
+| TomThumb 4x6 s2 gap0 (tight) | 6.2 | 4/5,4/5,4/5 |
+| TomThumb 4x6 s2 gap1 rg2 | 4.6 | 5/5,5/5,5/5 |
+| **Spleen 8x12 (incumbent)** | **7.3** | **5/5,5/5,5/5** ✅ still best |
+
+VERDICT: micro-atlas does NOT beat Spleen 5x8/8x12 on either provider. Spleen is already
+near-optimal legibility-per-pixel. The binding constraint is the vision ENCODER's OCR
+ability, not the font design — a better font can't fix what the encoder can't resolve.
+Font engineering is a DEAD END; the wins are in billing-geometry (T3) + salience (T7).

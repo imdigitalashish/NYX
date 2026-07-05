@@ -326,3 +326,9 @@ text. This is a genuine tradeoff: Nyx saves MONEY (tokens) but costs TIME (laten
 Best for: cost-sensitive batch/background work, huge contexts that wouldn't fit as text,
 or where token budget (not wall-clock) is the binding constraint. NOT for latency-critical
 interactive use. (This nuance is absent from narrow-baseline's framing — an honest addition.)
+
+## T24: image size does NOT affect latency (can't mitigate via smaller images)
+Same 12.8k content at cols 312/468/700 (0.5-0.6 Mpx): latency flat ~5.6-6s.
+Latency is dominated by the vision encoder's fixed processing + content complexity, NOT
+pixel count. Can't reduce latency by shrinking the image. The 19s in T23 was a larger 28k
+doc — latency scales with CONTENT amount, not image size. Accept latency or use less content.

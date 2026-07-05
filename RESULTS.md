@@ -313,3 +313,16 @@ JS renderer (vendored, CompressionStream PNG):
 Even 200k chars renders in 169ms. PNG encoding is NOT a latency bottleneck at our scale.
 The deferred T4 (Rust/WASM renderer) is UNNECESSARY — JS is fast enough. Killed.
 (The real latency is the model's vision processing of the image, which we can't change.)
+
+## T23: WALL-CLOCK latency — the honest tradeoff (image is SLOWER)
+28k-char content, Gemini 3.1 Pro, 3 trials:
+| mode | wall-clock | tokens |
+|---|---|---|
+| TEXT | avg 6194 ms | ~8k |
+| IMAGE | avg 18987 ms | ~1.1k |
+**Image uses ~85% fewer tokens BUT is ~3x SLOWER in wall-clock (19s vs 6s).**
+The vision encoder's processing of a dense image takes longer than processing equivalent
+text. This is a genuine tradeoff: Nyx saves MONEY (tokens) but costs TIME (latency).
+Best for: cost-sensitive batch/background work, huge contexts that wouldn't fit as text,
+or where token budget (not wall-clock) is the binding constraint. NOT for latency-critical
+interactive use. (This nuance is absent from narrow-baseline's framing — an honest addition.)

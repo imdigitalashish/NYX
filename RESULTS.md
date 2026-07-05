@@ -206,3 +206,16 @@ T12 (downscale probe): Gemini reads glyphs down to ~3.5x5.6px at 5/5 (well below
 readability cliff, because billing is flat.) This is ~2.6x narrow-baseline's ~14 char/tok.
 
 Optimal Gemini config: 2348px-wide single page, ~38k chars max, native 5x8 AA glyphs.
+
+## DEFINITIVE head-to-head (39.8k-char prose doc, Gemini 3.1 Pro, 3 trials)
+| method | pages | billed | vs text | accuracy |
+|---|---|---|---|---|
+| TEXT | - | 9435 | - | 5/5 (trivial) |
+| narrow-baseline | 2 | 2180 | -77% | 3/5,3/5,3/5 |
+| **Nyx (salience+2348w+38k page)** | 1 | **1110** | **-88%** | 3/5,3/5,3/5 |
+
+**>>> Nyx = 49% fewer tokens than narrow-baseline at EQUAL accuracy (both 3/5).**
+**>>> Nyx = 88% fewer tokens than plain text.**
+On Gemini this is the money result: half of narrow-baseline's cost, no accuracy loss.
+(Both at 3/5 on hard dense prose — the accuracy ceiling is the encoder, same for both;
+Nyx's advantage is purely token efficiency via flat-billing geometry + salience.)

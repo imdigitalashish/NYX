@@ -16,7 +16,7 @@ const Q=[
  {q:'monitor/alert name?',a:['getlmfailureatsubleveldata']},
 ];
 const packed=R.reflow(R.neutralizeSentinel(text))??text;
-const imgs=await R.renderTextToPngsWithCharLimit(packed,468,38000,{aa:true},4096);
+const imgs=await R.renderTextToPngsWithCharLimit(packed,468,24000,{aa:true},4096);
 const billed=await imageBilledTokens(MODEL,imgs.map(i=>({png:i.png})));
 const ib=[{type:'text',text:'report investigation report (↵=newline):'}];for(const im of imgs)ib.push({type:'image_url',image_url:{url:`data:image/png;base64,${b64(im.png)}`}});
 console.log(`\n=== T32 rigorous real accuracy | ${text.length}ch, ${imgs.length}p, ${billed}tok ===`);

@@ -419,3 +419,14 @@ across 2 pages recovers 100%. Since Gemini billing is ~flat per page, 2 pages ~=
 (still way under text). The rule: cap ~22-25k chars/PAGE for accuracy, let it use multiple
 flat-billed pages for big docs. Refines the naive "always 1 page" — 1 page only if it fits
 under the per-page readability cap. Production maxCharsPerPage should be ~24k, not 38k.
+
+## T34: --compress is a clear win on large docs
+78k-char doc, Gemini 3.1 Pro:
+| mode | chars | pages | tokens | accuracy |
+|---|---|---|---|---|
+| full | 77891 | 4 | 4354 | 4/5 |
+| **compressed** | 43690 | 2 | **2138** | **5/5** |
+Compression (stopword+vowel) HALVES pages, tokens, AND improves accuracy (5/5 vs 4/5) on
+large docs. Should be the DEFAULT for docs above the single-page readability cap (~24k chars).
+Small docs: skip compression (unnecessary, minor risk). Production: auto-enable --compress
+when doc > ~24k chars.

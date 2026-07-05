@@ -274,3 +274,7 @@ Gemini's OCR is strong enough for verbatim IDs at normal density. The confabulat
 - Misses are encoder-inherent (a few chars in a few GUIDs), not fixable by density.
 - Far better than narrow-baseline's documented Opus 0/15. Gemini is genuinely usable for verbatim IDs
   at ~85% — good enough for gist+most-IDs, not for must-be-perfect (keep those as text).
+
+## T19: layout — reflowed blob beats columnar 3x on tokens (same accuracy)
+Reflowed blob: 1 page 1071 tok @ 4/4. Aligned columns: 3 pages 3190 tok @ 4/4.
+Column padding wastes pixels; reflow-packing is confirmed optimal. No structured-layout benefit.

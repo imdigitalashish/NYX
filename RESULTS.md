@@ -405,3 +405,17 @@ Real 22k-char report investigation report, Gemini 3.1 Pro, 1 page, 1053 tokens:
 HONEST production number: ~73% overall accuracy on a real dense report, ~100% on
 gist/reasoning, misses concentrated on a few deep-buried long identifiers. For those, the
 --exact-ids sidecar or a text re-read is the mitigation.
+
+## T33: sweet spot — don't OVER-CRAM one page; spread to 2 when needed
+Non-monotonic finding (fact-recall across doc):
+| chars | pages | accuracy |
+|---|---|---|
+| 15k | 1 | 100% |
+| 31k | 1 (crammed) | 50% |
+| 47k | 2 | 100% |
+| 63k | 2 | 88% |
+KEY: cramming 31k into ONE dense page tanks accuracy (50%); the SAME content-density spread
+across 2 pages recovers 100%. Since Gemini billing is ~flat per page, 2 pages ~= 2160 tok
+(still way under text). The rule: cap ~22-25k chars/PAGE for accuracy, let it use multiple
+flat-billed pages for big docs. Refines the naive "always 1 page" — 1 page only if it fits
+under the per-page readability cap. Production maxCharsPerPage should be ~24k, not 38k.

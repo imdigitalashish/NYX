@@ -430,3 +430,10 @@ Compression (stopword+vowel) HALVES pages, tokens, AND improves accuracy (5/5 vs
 large docs. Should be the DEFAULT for docs above the single-page readability cap (~24k chars).
 Small docs: skip compression (unnecessary, minor risk). Production: auto-enable --compress
 when doc > ~24k chars.
+
+## T35: effective context-window extension — validated
+128k-char log (~37k text tokens) -> 6 pages / 6530 image tokens (82% fewer), 4/5 facts
+recalled from across the ENTIRE doc. Imaging fits ~5x more content per token budget =
+genuine context-window extension. Use case: reason over content that's too big/expensive as
+text. The model finds facts distributed across all 6 pages. Confirms Nyx's value for
+long-context tasks beyond just cost — it extends what fits.

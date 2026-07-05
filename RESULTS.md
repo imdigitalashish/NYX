@@ -339,3 +339,10 @@ Real report report: owner ✅, fault code 10038 ✅, confidence read 0.89 (actua
 The v2 provider-adaptive method works in the real user path. ~51-53k total Copilot tokens
 (includes CLI overhead), 1 page render. Confidence-value misread (0/8 confusion) is the known
 verbatim-lossy behavior — for must-be-exact values, read as text.
+
+## T25: gist-image + text-sidecar — optional exactness insurance
+8 GUIDs in 12k doc: image-only already 8/8 verbatim on Gemini (sidecar redundant here).
+A text sidecar of exact IDs (~113 tokens) is cheap insurance for guaranteed exactness when
+ID count is high or must be 100%. Optional accuracy tier: image (gist+~85% IDs) + optional
+text sidecar (100% IDs at tiny cost). Gemini's native verbatim is strong enough that sidecar
+is usually unnecessary — but available as a --exact-ids flag for critical use.

@@ -165,3 +165,25 @@ narrow-baseline/Nyx optical compression is NOT a general technique. It is a **Ge
 capability**. The 49-75% wins are real but Gemini-strongest. On Opus the savings are lower.
 This is the honest boundary of the whole approach — and neither narrow-baseline nor we can change it
 without the providers improving their vision encoders.
+
+## T10: FONT-TYPE experiment + Opus optimum — REAL fonts LOSE to compact atlas
+Real fonts (Consolas/Cascadia/Courier via headless browser) on Opus 4.8:
+- All read 5/5 easily BUT density only ~2.2-3.2 char/tok (browser renders big, pixel-billed).
+- Real fonts do NOT help Opus density — they're less pixel-efficient than the bitmap atlas.
+
+Opus atlas cell-size floor (3 trials, the REAL Opus optimum):
+| cell px | density | accuracy |
+|---|---|---|
+| 7x10 | 10.3 | 1/5,3/5,1/5 (unreliable) |
+| 7x12 | 8.4 | 4/5,5/5,4/5 |
+| **8x12** | **7.4** | **5/5,5/5,5/5** ← Opus WINNER |
+| 10x14 | 5.1 | 5/5,5/5 |
+| real Consolas 7px | 3.2 | 5/5 |
+
+### CORRECTED Opus verdict (better than before!)
+- Earlier I said Opus needs 11x14 (density 5.1). WRONG — tuning finds **8x12 = density 7.4**,
+  reliable 5/5. That's 45% denser than my first Opus conclusion.
+- Real fonts are a DEAD END for density (browser pixels too big). The compact bitmap atlas
+  at 8x12 is the Opus optimum.
+- Opus final: density ~7.4 char/tok (vs Gemini ~21, vs narrow-baseline's 5x8 which Opus reads at ~1/5).
+- So Nyx DOES beat narrow-baseline on Opus: narrow-baseline's 5x8 = garbage (1/5); Nyx 8x12 = 5/5 at density 7.4.

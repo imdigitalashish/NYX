@@ -380,3 +380,9 @@ gemini-3.5-flash: same billing (1116), same accuracy (5/5), similar latency as 3
 imaged reads. Flash's per-token LIST price is lower, so imaged reads on Flash cost even less
 in dollars at equal accuracy. Recommendation: use Flash for imaged gist reads when the task
 tolerates it (cheaper), Pro when max reasoning is needed. Both read the renders equally well.
+
+## T30: abstention prompt — nothing to fix on Gemini (0 confabulation)
+12 GUIDs, Gemini 3.1 Pro: 12/12 correct both with and without abstention prompt. Zero
+confabulation. Gemini's verbatim OCR is strong enough that narrow-baseline's Opus-era confabulation
+problem is essentially ABSENT here. Abstention prompting (narrow-baseline's unbuilt roadmap item) is
+unnecessary on Gemini. (Would still help weaker encoders like Opus — untested.)

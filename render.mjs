@@ -16,7 +16,7 @@
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { renderTextToPngsWithCharLimit, reflow, DENSE_CONTENT_COLS } from './vendor/nyx-render.bundle.js';
+import { renderTextToPngsWithCharLimit, reflow, neutralizeSentinel, DENSE_CONTENT_COLS } from './vendor/nyx-render.bundle.js';
 
 // ---- provider profiles (from measured billing + readability) ----
 const PROFILES = {
@@ -64,7 +64,9 @@ async function renderFile(text, profile, compress) {
   // ~36 char/tok ceiling) ALWAYS reflow — packing is strictly better. On Opus (pixel
   // billing, needs legible rows) only reflow sparse content; keep dense one-line-per-row.
   const doReflow = profile.alwaysReflow || sparse;
-  const packed = doReflow ? (reflow(src) ?? src) : src;
+  // Neutralize any pre-existing ↵ sentinel so reflow packs instead of bailing (real files
+  // may contain U+21B5, which would otherwise force an unpacked multi-page render).
+  const packed = doReflow ? (reflow(neutralizeSentinel(src)) ?? src) : src;
   const style = { aa: true, cellWBonus: profile.cellWBonus, cellHBonus: profile.cellHBonus };
   const imgs = await renderTextToPngsWithCharLimit(packed, profile.cols, profile.maxCharsPerPage, style, profile.maxHeightPx);
   return { sparse, imgs, compressedChars: src.length };

@@ -295,3 +295,9 @@ Confirmed on real content, not synthetic. This is the production result.
   narrow-baseline's transform.ts has maybeReflow() doing exactly this — our v2 must too.
 - Multi-file packing is a killer feature for codebase-wide tasks: pack many files into one
   flat-billed Gemini page, ask cross-file questions. Needs the sentinel fix to work reliably.
+
+## T21c: sentinel-fix impact — 6x improvement on multi-file
+12 files (26k chars) WITH neutralizeSentinel before reflow: 1 page, 1050 tokens.
+WITHOUT the fix: 6 pages, 6355 tokens. The sentinel bug was silently costing 6x on any
+content containing U+21B5. Fixed in production v2. Multi-file codebase packing now viable:
+~26k chars of code across 12 files in ONE flat-billed ~1050-token Gemini page.

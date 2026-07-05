@@ -40,15 +40,16 @@ function compressText(text) {
 }
 
 function parseArgs(argv) {
-  const files = []; let out = '.nyx-cache', provider = 'gemini', compress = false;
+  const files = []; let out = '.nyx-cache', provider = 'gemini', compress = false, multifile = false;
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === '--out') out = argv[++i];
     else if (a === '--provider') provider = argv[++i];
     else if (a === '--compress') compress = true;
+    else if (a === '--multifile') multifile = true;
     else files.push(a);
   }
-  return { files, out, provider, compress };
+  return { files, out, provider, compress, multifile };
 }
 
 function avgLineLen(text) {
@@ -73,8 +74,8 @@ async function renderFile(text, profile, compress) {
 }
 
 async function main() {
-  const { files, out, provider, compress } = parseArgs(process.argv.slice(2));
-  if (!files.length) { console.error('nyx: no files. Usage: node render.mjs [--provider gemini|opus] [--compress] <files...>'); process.exit(2); }
+  const { files, out, provider, compress, multifile } = parseArgs(process.argv.slice(2));
+  if (!files.length) { console.error('nyx: no files. Usage: node render.mjs [--provider gemini|opus] [--compress] [--multifile] <files...>'); process.exit(2); }
 
   if (provider === 'gpt' || provider === 'text' || provider === 'none') {
     console.log('=== NYX: provider does not reliably read optical renders — read files as TEXT ===');
@@ -85,6 +86,27 @@ async function main() {
   if (!existsSync(out)) mkdirSync(out, { recursive: true });
 
   const manifest = []; let pageIdx = 0;
+
+  // --multifile: concatenate ALL files into ONE render (exploits Gemini flat billing —
+  // a whole codebase in one flat-billed page). Cross-file recall works (see T21).
+  if (multifile) {
+    let combined = '';
+    for (const f of files) {
+      try { combined += `\n===== FILE: ${f} =====\n` + readFileSync(resolve(f), 'utf8'); }
+      catch (e) { console.error(`nyx: skip ${f}: ${e?.message || e}`); }
+    }
+    const { imgs } = await renderFile(combined, profile, compress);
+    const pages = [];
+    for (const im of imgs) { const name = `nyx_p${String(++pageIdx).padStart(3, '0')}.png`; writeFileSync(resolve(out, name), im.png); pages.push(name); }
+    console.log(`=== NYX MANIFEST (multifile, provider=${provider}${compress ? ', compressed' : ''}) ===`);
+    console.log(`output dir: ${resolve(out)}  |  ${files.length} files, ${combined.length} chars -> ${pages.length} page(s)`);
+    console.log(`Read page image(s): ${pages.join(', ')}`);
+    console.log('Files are concatenated with ===== FILE: <path> ===== markers.');
+    console.log('\nNOTE: recognition-only (lossy). For exact identifiers, Read the original file as text.');
+    writeFileSync(resolve(out, 'manifest.json'), JSON.stringify({ multifile: true, files, pages }, null, 2));
+    return;
+  }
+
   for (const f of files) {
     let text; try { text = readFileSync(resolve(f), 'utf8'); } catch (e) { manifest.push({ file: f, status: 'error', detail: String(e?.message || e) }); continue; }
     const lineCount = text.split('\n').length;

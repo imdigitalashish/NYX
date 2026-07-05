@@ -254,3 +254,9 @@ Gemini reconstructs facts from vowel-dropped abbreviated text fine. Big lever fo
 gemini-3.5-flash: FLAT ~1080 tok (0.6-17 Mpx, same as 3.1-pro). Readability density 17.7 @ 4/5.
 The flat-billing + optical-readability property is a GEMINI-FAMILY trait, not just 3.1-pro.
 Method applies to gemini-3.1-pro (best), gemini-3.5-flash (cheaper), likely all Gemini vision.
+
+## T16: max effective density — compression extends the ceiling
+Compress (stopword+vowel) then pack: original 53.8k chars -> 29.8k -> ONE page -> effective
+density 50.5 char/tok (but acc drops to 2-3/5 at that extreme). The rendered-char cliff (~40k
+per page) is fixed; compression lets MORE ORIGINAL content fit under it. Best reliable point:
+~40k original chars/page at 5/5 with compression, ~36 char/tok effective. Beyond = accuracy loss.

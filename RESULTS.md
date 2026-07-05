@@ -449,3 +449,11 @@ JSON and logs (flat, delimited) read reliably. YAML's indentation-based nesting 
 harder for the encoder to track after reflow (which flattens structure). For deeply-nested
 YAML/structured data, one-line-per-row (no reflow) may preserve structure better — but costs
 more pages. Most real content (code, logs, reports, JSON) reads well.
+
+## T37: code GENERATION from imaged source — works
+Read source code as image, asked to write a new function using its helpers/conventions.
+Generated code: correct name, async, uses the ask()/grade() helpers correctly, returns the
+right shape. All 5 checks pass. billed=955 (vs ~1000+ text tokens for the source).
+CONCLUSION: Nyx supports WRITE/generation tasks, not just reading. The model reasons over
+imaged code well enough to extend it correctly. Viable for "read these files (imaged) then
+implement X" agent workflows, not just Q&A.

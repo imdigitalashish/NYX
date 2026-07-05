@@ -55,3 +55,13 @@ Single page, varied width, 22k corpus, Gemini 3.1 Pro:
 **WINNER: single 2048px-wide page = 1065 tok @ 5/5, vs narrow-baseline 2093 tok = 49% FEWER.**
 Rule for Gemini: pack the whole doc into ONE ~2048px-wide page (up to ~22k chars),
 exploiting flat-tile billing. Narrower (1568) or wider (2348) both lose accuracy.
+
+## T7: SALIENCE-MASKED RENDERING (from VIST PVE) — WORKS
+Strip stopwords before render -> fewer chars -> larger legible glyphs after downsample.
+Prose corpus 22,780 chars, Gemini 3.1 Pro, single 2048px page:
+| render | billed | accuracy |
+|---|---|---|
+| FULL text | 1050 | 4/7 |
+| SALIENCE-compressed (71% of chars) | 1079 | **6/7** |
+Salience masking IMPROVES accuracy at ~same token cost (fewer chars = more legible glyphs).
+Validated frozen-API adaptation of VIST's function-word masking.

@@ -1,3 +1,8 @@
+Prompt for you agent to install
+
+`Hey here's a repository please install this as a skill file all the necessary details are in the REPO - https://github.com/imdigitalashish/NYX`
+
+
 # Nyx — token-saving context compression for coding agents
 
 > *Nyx (Νύξ), the Greek primordial goddess of night — she folds the vast into the dark

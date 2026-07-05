@@ -95,3 +95,29 @@ Large doc (35.5k full / 29k salience), Gemini 3.1 Pro:
 Result: 49-75% fewer tokens than narrow-baseline across doc sizes, equal-or-better accuracy on Gemini.
 Provenance: novel synthesis of T1(density knee)+T3(provider billing)+T7(salience/VIST) that
 narrow-baseline never exploited (it's Claude-tuned, single-geometry, no salience).
+
+## T3 CROSS-PROVIDER billing (CRITICAL — the axiom fully mapped)
+Billed image tokens by geometry, measured live:
+
+| WxH | Mpx | Gemini 3.1 | Opus 4.8 | GPT-5.4 |
+|---|---|---|---|---|
+| 768x768 | 0.59 | 1089 | 787 | 692 |
+| 1568x728 (narrow-baseline) | 1.14 | 1078 | 1459 | 1353 |
+| 2048x768 | 1.57 | 1080 | 2075 | 1844 |
+| 2048x2048 | 4.19 | 1089 | 4764 | 2805 |
+| 4096x2048 | 8.39 | 1081 | 4235* | 2340* |
+| 6144x4096 | 25.17 | 1080 | 4707* | 2692* |
+(* = past the provider's internal resample cap; tokens plateau as image is downscaled)
+
+### THREE DIFFERENT BILLING REGIMES — one method cannot be optimal for all:
+- **Gemini: FLAT ~1080 tokens regardless of size.** Pack as big/wide as readable. Extra
+  pages nearly free. THE big opportunity. Nyx-Gemini method exploits this.
+- **Opus 4.8: scales ~px/750 up to ~1.15Mpx, then caps ~4700.** narrow-baseline's 1568x728 is
+  correctly tuned here. To save on Opus, minimize pixels -> SMALL dense pages (opposite of Gemini!).
+- **GPT-5.4: scales with px, caps ~2700.** Similar to Opus; small pages win.
+- GPT-5.5 is Responses-API only (not testable via chat/completions here).
+
+### IMPLICATION: Nyx must be PROVIDER-ADAPTIVE.
+- Gemini -> wide flat-billed pages (our 49-75% win).
+- Opus/GPT -> narrow-baseline-style minimal-pixel pages (narrow-baseline already near-optimal there; our T1
+  density-knee backoff to ~22k/page is the only improvement).

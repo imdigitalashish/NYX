@@ -374,3 +374,9 @@ The 50% headline applies to docs >15k chars (where narrow-baseline needs 2+ page
 Below 15k, both fit one page and nyx's wider geometry costs 4% MORE. Honest fix: use
 narrow-baseline-style narrow geometry for small docs, wide-page for large. The average win across
 mixed sizes is ~35%, not 50% — 50% is the large-doc best case. Don't overclaim.
+
+## T29: Flash vs Pro for imaged reads — Flash is a cheaper option, equal accuracy
+gemini-3.5-flash: same billing (1116), same accuracy (5/5), similar latency as 3.1-pro on
+imaged reads. Flash's per-token LIST price is lower, so imaged reads on Flash cost even less
+in dollars at equal accuracy. Recommendation: use Flash for imaged gist reads when the task
+tolerates it (cheaper), Pro when max reasoning is needed. Both read the renders equally well.

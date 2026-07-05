@@ -457,3 +457,7 @@ right shape. All 5 checks pass. billed=955 (vs ~1000+ text tokens for the source
 CONCLUSION: Nyx supports WRITE/generation tasks, not just reading. The model reasons over
 imaged code well enough to extend it correctly. Viable for "read these files (imaged) then
 implement X" agent workflows, not just Q&A.
+
+## T38: navigation hints unnecessary at 2-page scale (3/3 with or without)
+Gemini finds facts across 2 pages reliably regardless of position hints. Multi-page recall
+is robust at small page counts. (Hints might help at 6+ pages — untested, low priority.)

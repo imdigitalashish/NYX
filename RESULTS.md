@@ -79,3 +79,19 @@ Regime matters:
   -> **75% fewer tokens than narrow-baseline AND better accuracy.** Salience rescues readability.
 
 RULE: doc <= readable-page -> geometry only. doc > readable -> add salience (or split pages).
+
+## T8b: FINAL SYNTHESIZED PIPELINE — the Nyx-Gemini method
+Large doc (35.5k full / 29k salience), Gemini 3.1 Pro:
+| method | pages | billed | accuracy |
+|---|---|---|---|
+| narrow-baseline | 4 | 4388 | 2/5 |
+| **Nyx (salience + 2048w + 22k/page split)** | 2 | **2151** | **5/5** |
+**>>> 51% fewer tokens AND perfect accuracy where narrow-baseline fails.**
+
+### THE NYX METHOD (frozen commercial VLM, no training) — beats narrow-baseline
+1. Salience-compress: drop stopwords (VIST PVE, frozen-API adaptation).
+2. Geometry: 2048px-wide pages (not narrow-baseline's 1568) — tuned to Gemini flat-tile billing (T3).
+3. Split at ~22k chars/page (readability knee, T1) — extra pages ~free on Gemini's flat billing.
+Result: 49-75% fewer tokens than narrow-baseline across doc sizes, equal-or-better accuracy on Gemini.
+Provenance: novel synthesis of T1(density knee)+T3(provider billing)+T7(salience/VIST) that
+narrow-baseline never exploited (it's Claude-tuned, single-geometry, no salience).

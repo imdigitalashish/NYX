@@ -45,7 +45,7 @@ honest latency tradeoff, (6) full cross-provider capability map.
 | T29 | flash vs pro reads | ✅ | flash reads = pro, cheaper |
 | T30 | abstention prompt | ❌ unneeded | Gemini 12/12 GUIDs, 0 confab |
 | T31 | adversarial verbatim | 🔥 | 8/8 EXACT 40-char SHA hashes |
-| T32 | real-world accuracy | ✅ | ~73% on real report report @ 86% savings |
+| T32 | real-world accuracy | ✅ | ~73% on a real dense report @ 86% savings |
 
 ## Field-updating result
 Gemini 3.1 Pro reads 40-char SHA-1 hashes 8/8 exact and ~85% of GUIDs. The "optical text is

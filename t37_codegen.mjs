@@ -2,8 +2,8 @@ import * as R from './render.bundle.mjs';
 import { ask, b64, imageBilledTokens } from './lib.mjs';
 import { readFileSync } from 'fs';
 const MODEL='gemini-3.1-pro-preview';
-const code=readFileSync('C:/Users/user/MicrosoftWork/nyx-research/lib.mjs','utf8')
-  +'\n'+readFileSync('C:/Users/user/MicrosoftWork/nyx-research/micro-render.mjs','utf8');
+const code=readFileSync('~/nyx-research/lib.mjs','utf8')
+  +'\n'+readFileSync('~/nyx-research/micro-render.mjs','utf8');
 console.log(`\n=== T37 code generation from imaged source | ${code.length}ch ===`);
 const packed=R.reflow(R.neutralizeSentinel(code))??code;
 const imgs=await R.renderTextToPngsWithCharLimit(packed,468,24000,{aa:true},4096);

@@ -2,7 +2,7 @@ import * as R from './render.bundle.mjs';
 import { ask, b64, grade, imageBilledTokens } from './lib.mjs';
 import { readFileSync } from 'fs';
 const MODEL='gemini-3.1-pro-preview';
-const text=readFileSync('C:/Users/user/investigationhistory/report-1.md','utf8');
+const text=readFileSync('~/investigationhistory/report-1.md','utf8');
 const Q=[
  {q:'current owner team/queue?',a:['team-a']},
  {q:'previous owner?',a:['oneflleetnode','onefleetnode','livemigration']},

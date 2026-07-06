@@ -2,7 +2,7 @@ import { ask, b64, grade, imageBilledTokens } from './lib.mjs';
 import { readFileSync } from 'fs';
 import { execSync } from 'child_process';
 // use the production tool to render
-execSync('node "C:/Users/user/MicrosoftWork/nyx/render.mjs" --out ./_pval --provider gemini "C:/Users/user/investigationhistory/report-1.md"',{stdio:'ignore'});
+execSync('node "~/nyx/render.mjs" --out ./_pval --provider gemini "~/investigationhistory/report-1.md"',{stdio:'ignore'});
 const {readdirSync}=await import('fs');
 const pages=readdirSync('./_pval').filter(f=>f.endsWith('.png')).sort();
 const imgs=pages.map(p=>({png:new Uint8Array(readFileSync('./_pval/'+p))}));

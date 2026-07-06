@@ -3,7 +3,7 @@
 // Fonts to test: Cascadia Mono, Consolas, Courier, condensed sans — at various sizes.
 import { createRequire } from 'node:module';
 const require=createRequire(import.meta.url);
-const { chromium } = require('C:/Users/user/node_modules/playwright/index.js');
+const { chromium } = require('~/node_modules/playwright/index.js');
 import { ask, b64, grade, imageBilledTokens } from './lib.mjs';
 
 function prose(n){const f=[];for(let i=0;i<n;i++)f.push(`worker_${i} zone_${i%8} status ${i%4===0?'degraded':'healthy'} latency ${50+(i*3)%400}ms.`);

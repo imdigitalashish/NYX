@@ -3,7 +3,7 @@ import { ask, b64, grade, imageBilledTokens } from './lib.mjs';
 import { readFileSync, readdirSync } from 'fs';
 const MODEL='gemini-3.1-pro-preview';
 // pack ALL the research .mjs files into one image
-const dir='C:/Users/user/MicrosoftWork/nyx-research';
+const dir='~/nyx-research';
 const mjs=readdirSync(dir).filter(f=>f.endsWith('.mjs')).slice(0,12);
 let combined='';for(const f of mjs){combined+=`\n===== ${f} =====\n`+readFileSync(dir+'/'+f,'utf8');}
 console.log(`\n=== T21b pack ${mjs.length} files | ${combined.length}ch ===`);

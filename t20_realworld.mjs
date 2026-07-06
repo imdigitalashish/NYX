@@ -3,9 +3,9 @@ import { ask, b64, grade, imageBilledTokens } from './lib.mjs';
 import { readFileSync } from 'fs';
 const MODEL='gemini-3.1-pro-preview';
 const files=[
-  {path:'C:/Users/user/MicrosoftWork/ServicesSRE-Experiments/projects/zpi-harness/packages/ai/src/providers/source-code-file',
+  {path:'~/ServicesSRE-Experiments/projects/zpi-harness/packages/ai/src/providers/source-file.ts',
    Q:[{q:'allowed image media_type values?',a:['image/jpeg','image/png']},{q:'placeholder text for images-only message?',a:['see attached']}]},
-  {path:'C:/Users/user/investigationhistory/report-1.md',
+  {path:'~/investigationhistory/report-1.md',
    Q:[{q:'current owner team?',a:['team-a']},{q:'confidence?',a:['0.80','0.8']},{q:'fault code?',a:['10038']}]},
 ];
 console.log(`\n=== T20 real-world: v2(reflow+wide) vs narrow(1568) | ${MODEL} ===`);

@@ -5,7 +5,7 @@ import * as R from './render.bundle.mjs';
 import { ask, b64, grade, imageBilledTokens } from './lib.mjs';
 const H = homedir().replace(/\\/g,'/');
 const T = `${H}/investigationhistory`;
-const S = `${H}/work/design-corpus/sli-investigation`;
+const S = `${H}/corpus/design-docs`;
 const A = `${H}/Projects/OutageAgent/tto-reduction-investigation/current_sprint_icms`;
 
 const TASKS = [
@@ -23,11 +23,11 @@ const TASKS = [
     {q:'was BackplaneCrashes zero?', a:['zero','0']},
     {q:'owning team?', a:['team-a']}]},
   // --- 3 distinct SLI design docs ---
-  { name:'SLI design-doc-4', file:`${S}/design.design-doc-4/SLI_Design_Document.md`, Q:[
+  { name:'SLI design-doc-4', file:`${S}/design-doc-4/SLI_Design_Document.md`, Q:[
     {q:'the SLI target percentage per tenant per 30d?', a:['99.99']},
     {q:'which KAS rule fires this (GetDesignMetric...)?', a:['getdesignmetric','metric']},
     {q:'telemetry source table name?', a:['trace','traceall']}]},
-  { name:'SLI design-doc-5', file:`${S}/design.ExportToPDFSuccessRate/SLI_Design_Document.md`, Q:[
+  { name:'SLI design-doc-5', file:`${S}/design.design-doc-5/SLI_Design_Document.md`, Q:[
     {q:'what scenario/feature does this SLI cover (export to what)?', a:['pdf']},
     {q:'is this a portal or platform reliability SLI?', a:['portal']}]},
   { name:'SLI design-doc-6', file:`${S}/design.design-doc-6/SLI_Design_Document.md`, Q:[

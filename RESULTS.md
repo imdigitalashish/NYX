@@ -283,8 +283,8 @@ Column padding wastes pixels; reflow-packing is confirmed optimal. No structured
 Gemini 3.1 Pro, real files:
 | file | text tok | narrow | nyx-v2 | v2 accuracy |
 |---|---|---|---|---|
-| source-code-file (28k code) | 8598 | 2172 (2p, 3/3) | **1088 (1p)** | 3/3 |
-| report report (22k) | 7698 | 2036 (2p, 3/4) | **1053 (1p)** | 4/4 (beats narrow) |
+| Task 1 — source code (28k) | 8598 | 2172 (2p, 3/3) | **1088 (1p)** | 3/3 |
+| Task 2 — dense report (22k) | 7698 | 2036 (2p, 3/4) | **1053 (1p)** | 4/4 |
 **nyx-v2 = ~50% fewer tokens than the narrow baseline, ~86-87% fewer than text, equal-or-better accuracy.**
 Confirmed on real content, not synthetic. This is the production result.
 
@@ -335,7 +335,7 @@ doc — latency scales with CONTENT amount, not image size. Accept latency or us
 
 ## PRODUCTION v2 validated end-to-end through Agency CLI (Gemini)
 `node render.mjs --provider gemini report.md` -> ONE page -> Agency Read -> answer.
-Real report report: owner ✅, fault code 10038 ✅, confidence read 0.89 (actual 0.80, one misread).
+Real dense report: primary fields read correctly, one long identifier misread (0.89 vs 0.80).
 The v2 provider-adaptive method works in the real user path. ~51-53k total Copilot tokens
 (includes CLI overhead), 1 page render. Confidence-value misread (0/8 confusion) is the known
 verbatim-lossy behavior — for must-be-exact values, read as text.
@@ -396,8 +396,8 @@ strings" caveat is largely a WEAK-ENCODER artifact; on Gemini 3.1 Pro it mostly 
 This is a major update to the field's assumptions (DeepSeek-OCR 60%@20x was on their own
 small decoder; a frontier commercial VLM is far better at dense OCR).
 
-## T32: DEFINITIVE real-world accuracy (real report report, 10 questions, 3 trials)
-Real 22k-char report investigation report, Gemini 3.1 Pro, 1 page, 1053 tokens:
+## T32: DEFINITIVE real-world accuracy (real dense report, 10 questions, 3 trials)
+Real 22k-char dense report, Gemini 3.1 Pro, 1 page, 1053 tokens:
 - Accuracy: 8/10, 7/10, 7/10 across 3 trials (70-80%, avg ~73%).
 - Misses: consistently the 2 longest GUID/node-IDs buried deep in dense tables.
 - Gist/routing/severity/confidence/fault-code/cluster: all reliably correct.

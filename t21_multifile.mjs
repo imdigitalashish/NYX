@@ -4,9 +4,9 @@ import { readFileSync } from 'fs';
 const MODEL='gemini-3.1-pro-preview';
 // 3 real small files concatenated with headers
 const files=[
-  'C:/Users/user/MicrosoftWork/nyx-research/lib.mjs',
-  'C:/Users/user/MicrosoftWork/nyx-research/micro-render.mjs',
-  'C:/Users/user/MicrosoftWork/nyx-research/parse-bdf.mjs',
+  '~/nyx-research/lib.mjs',
+  '~/nyx-research/micro-render.mjs',
+  '~/nyx-research/parse-bdf.mjs',
 ];
 let combined='';
 for(const f of files){combined+=`\n===== FILE: ${f.split('/').pop()} =====\n`+readFileSync(f,'utf8');}

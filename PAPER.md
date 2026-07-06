@@ -48,8 +48,8 @@ Provider-adaptive:
 
 | | narrow baseline | Nyx-v2 | vs text |
 |---|---|---|---|
-| source-code-file (28k code), Gemini | 2172 tok, 3/3 | **1088 tok, 3/3** | −87% |
-| report report (22k), Gemini | 2036 tok, 3/4 | **1053 tok, 4/4** | −86% |
+| Task 1 — source code (28k), Gemini | 2172 tok, 3/3 | **1088 tok, 3/3** | −87% |
+| Task 2 — dense report (22k), Gemini | 2036 tok, 3/4 | **1053 tok, 4/4** | −86% |
 
 ## Latency tradeoff (important)
 

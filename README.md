@@ -50,11 +50,11 @@ node render.mjs --provider gemini --multifile  <many-files> # whole codebase, on
 
 ## What we proved (headline numbers, live-measured)
 
-| content | text tokens | narrow baseline | **Nyx** |
+| Task | text tokens | narrow render | **Nyx** |
 |---|---|---|---|
-| source-code-file (28k code), Gemini | 8598 | 2172 (3/3) | **1088 (3/3)** |
-| report report (22k), Gemini | 7698 | 2036 (3/4) | **1053 (4/4)** |
-| 175k-char codebase, Gemini | ~50000 | — | **5324 (89% fewer)** |
+| Task 1 — source code (28k chars), Gemini | 8598 | 2172 (3/3) | **1088 (3/3)** |
+| Task 2 — dense report (22k chars), Gemini | 7698 | 2036 (3/4) | **1053 (4/4)** |
+| Task 3 — large codebase (175k chars), Gemini | ~50000 | — | **5324 (89% fewer)** |
 
 - Verbatim GUID recall on Gemini: **~85%** (vs a weak encoder's 0/15).
 - Multi-file: 12 files / 26k chars → ONE page / ~1050 tokens.

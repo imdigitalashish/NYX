@@ -1,5 +1,5 @@
 // T1: How dense can we pack before frontier models lose accuracy?
-// narrow-baseline uses ~28080 chars/page (5x8 glyphs at 1568x728). We push PAST that by cramming
+// narrow uses ~28080 chars/page (5x8 glyphs at 1568x728). We push PAST that by cramming
 // more chars into the same billed page (API downsamples -> smaller effective glyphs),
 // measuring density (chars/token) and accuracy at each level.
 import * as R from './render.bundle.mjs';
@@ -25,7 +25,7 @@ const Q=[
 
 const CORPUS=makeCorpus();
 const MODEL=process.argv[2]||'gemini-3.1-pro-preview';
-// chars-per-page levels: narrow-baseline default 28080, then push denser
+// chars-per-page levels: narrow default 28080, then push denser
 const LEVELS=[10000, 14000, 18000, 22000, 28080];
 
 console.log(`\n=== T1 density sweep | ${MODEL} | corpus ${CORPUS.length} chars ===`);

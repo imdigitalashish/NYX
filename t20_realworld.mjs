@@ -8,7 +8,7 @@ const files=[
   {path:'C:/Users/user/investigationhistory/report-1.md',
    Q:[{q:'current owner team?',a:['team-a']},{q:'confidence?',a:['0.80','0.8']},{q:'fault code?',a:['10038']}]},
 ];
-console.log(`\n=== T20 real-world: v2(reflow+wide) vs narrow-baseline(1568) | ${MODEL} ===`);
+console.log(`\n=== T20 real-world: v2(reflow+wide) vs narrow(1568) | ${MODEL} ===`);
 for(const {path,Q} of files){
   const text=readFileSync(path,'utf8');
   const name=path.split('/').pop();
@@ -22,7 +22,7 @@ for(const {path,Q} of files){
   }
   const tt=(await ask(MODEL,[{type:'text',text:text+'\nOK'}],1)).usage?.prompt_tokens;
   console.log(`${name} (${text.length}ch, text=${tt}tok):`);
-  const px=await ev(312,22000,728,'narrow-baseline');
+  const px=await ev(312,22000,728,'narrow');
   const v2=await ev(468,38000,4096,'nyx-v2');
-  console.log(`  >>> nyx-v2 ${v2} vs narrow-baseline ${px} (${((1-v2/px)*100).toFixed(0)}% fewer) vs text ${tt} (${((1-v2/tt)*100).toFixed(0)}% fewer)`);
+  console.log(`  >>> nyx-v2 ${v2} vs narrow ${px} (${((1-v2/px)*100).toFixed(0)}% fewer) vs text ${tt} (${((1-v2/tt)*100).toFixed(0)}% fewer)`);
 }

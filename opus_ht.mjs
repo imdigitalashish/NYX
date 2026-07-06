@@ -17,6 +17,6 @@ async function ev(imgs,label){
 }
 console.log(`\n=== OPUS head-to-head | corpus ${C.length}ch ===`);
 const tt=await textTokens(); console.log(`TEXT: ${tt} tokens (baseline, acc=5/5 trivially)`);
-const px=await ev(await R.renderTextToPngsWithCharLimit(packed,312,22000,{aa:true},728),'NARROW-BASELINE (5x8)');
+const px=await ev(await R.renderTextToPngsWithCharLimit(packed,312,22000,{aa:true},728),'NARROW (5x8)');
 const best=await ev(await R.renderTextToPngsWithCharLimit(packed,240,999999,{aa:true,cellWBonus:6,cellHBonus:6},2048),'NYX-Opus (11x14)');
-console.log(`\nvs TEXT ${tt}: narrow-baseline ${px} (${((1-px/tt)*100).toFixed(0)}%), nyx-opus ${best} (${((1-best/tt)*100).toFixed(0)}%)`);
+console.log(`\nvs TEXT ${tt}: narrow ${px} (${((1-px/tt)*100).toFixed(0)}%), nyx-opus ${best} (${((1-best/tt)*100).toFixed(0)}%)`);

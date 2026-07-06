@@ -3,7 +3,7 @@ import { imageBilledTokens } from './lib.mjs';
 const MODEL='gemini-3.1-pro-preview';
 function doc(rows){const f=[];for(let i=0;i<rows;i++)f.push(`rec_${i}: svc_${i%12} zone_${i%7} val ${(i*7)%9999} status ${i%3===0?'err':'ok'} extra payload_${i}`);return f.join('\n');}
 console.log(`\n=== T28b nyx advantage vs doc size ===`);
-console.log('chars | narrow-baseline(1568) | nyx(2348) | saving');
+console.log('chars | narrow(1568) | nyx(2348) | saving');
 for(const rows of [100,250,500,1000,2000]){
   const t=doc(rows), packed=R.reflow(R.neutralizeSentinel(t))??t;
   const px=await R.renderTextToPngsWithCharLimit(packed,312,22000,{aa:true},728);

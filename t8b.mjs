@@ -17,5 +17,5 @@ for(const cap of [18000,22000,30000]){
   const billed=await imageBilledTokens(MODEL,imgs);
   const ib=[{type:'text',text:'Rendered data (↵=newline, stopwords dropped):'}];for(const im of imgs)ib.push({type:'image_url',image_url:{url:`data:image/png;base64,${b64(im.png)}`}});
   let accs=[];for(let t=0;t<2;t++){let a=0,n=0;for(const qq of Q){const r=await ask(MODEL,[...ib,{type:'text',text:`\nQ:${qq.q}\nOnly value.`}],40);a+=grade(r.text,qq.a);n+=qq.a.length;}accs.push(`${a}/${n}`);}
-  console.log(`cap${cap}: ${imgs.length}p billed=${billed} acc=[${accs.join(',')}]  (narrow-baseline was 4388@2/5)`);
+  console.log(`cap${cap}: ${imgs.length}p billed=${billed} acc=[${accs.join(',')}]  (narrow was 4388@2/5)`);
 }

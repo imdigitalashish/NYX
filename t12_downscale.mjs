@@ -2,7 +2,7 @@ import * as R from './render.bundle.mjs';
 import { ask, b64, grade, imageBilledTokens } from './lib.mjs';
 import { createRequire } from 'node:module';
 const require=createRequire(import.meta.url);
-const sharp=require('C:/Users/ASHISH~1/AppData/Local/Temp/narrow-baseline/node_modules/.pnpm/sharp@0.34.5/node_modules/sharp/lib/index.js');
+const sharp=require('C:/Users/ASHISH~1/AppData/Local/Temp/narrow/node_modules/.pnpm/sharp@0.34.5/node_modules/sharp/lib/index.js');
 function prose(n){const f=[];for(let i=0;i<n;i++)f.push(`worker_${i} zone_${i%8} status ${i%4===0?'degraded':'healthy'} latency ${50+(i*3)%400}ms.`);
  f[Math.floor(n*0.35)]=`IMPORTANT: connection pool max size 850 timeout 4200 ms.`;
  f[Math.floor(n*0.73)]=`CRITICAL: tax rate 1.08 fallback port 8443 grpc.`;return f.join('\n');}

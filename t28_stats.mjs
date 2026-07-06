@@ -24,6 +24,6 @@ for(let s=1;s<=5;s++){
   process.stdout.write(`doc${s} `);
 }
 const avg=a=>a.reduce((x,y)=>x+y,0)/a.length;
-console.log(`\nnarrow-baseline:  avg ${avg(pxTok).toFixed(0)} tok, acc ${(100*avg(pxAcc)).toFixed(0)}%`);
+console.log(`\nnarrow:  avg ${avg(pxTok).toFixed(0)} tok, acc ${(100*avg(pxAcc)).toFixed(0)}%`);
 console.log(`nyx-v2:  avg ${avg(nyxTok).toFixed(0)} tok, acc ${(100*avg(nyxAcc)).toFixed(0)}%`);
-console.log(`nyx saves ${(100*(1-avg(nyxTok)/avg(pxTok))).toFixed(0)}% tokens vs narrow-baseline, accuracy delta ${(100*(avg(nyxAcc)-avg(pxAcc))).toFixed(0)}pp`);
+console.log(`nyx saves ${(100*(1-avg(nyxTok)/avg(pxTok))).toFixed(0)}% tokens vs narrow, accuracy delta ${(100*(avg(nyxAcc)-avg(pxAcc))).toFixed(0)}pp`);

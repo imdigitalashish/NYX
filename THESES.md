@@ -3,11 +3,11 @@
 ## The mechanism, stated precisely
 Text → glyph bitmap → PNG → vision encoder → model "reads" it. Token cost is
 `billed_pixels / K` (K≈750 Claude), NOT character count. Text costs ~3.5 char/token;
-narrow-baseline packs ~28,000 chars into a ~1.15MP page billed ~1,525 tokens ≈ **18 char/token**.
-So narrow-baseline's edge over text is ~5×. Everything below asks: can we do better than 18, faster,
+the standard approach packs ~28,000 chars into a ~1.15MP page billed ~1,525 tokens ≈ **18 char/token**.
+So the edge over text is ~5×. Everything below asks: can we do better than 18, faster,
 or without the pain?
 
-## The axioms narrow-baseline bakes in (and never questions)
+## The axioms the standard approach bakes in
 
 1. **AXIOM A1 — glyphs must be human-legible 5×8 monochrome.** Chosen for Opus 4.7-era
    OCR. Frontier encoders (Gemini 3.1, Opus 4.8) may read far smaller. If 4×6 or 3×5 works,
@@ -42,7 +42,7 @@ or without the pain?
 ## Theses to test (kill-fast, keep-what-wins)
 
 - **T1 (A1): Glyph-size floor per model.** Sweep 5×8 → 3×5. Find smallest legible cell on
-  Gemini 3.1 / Opus 4.8. Expected: frontier reads smaller than narrow-baseline assumes. HIGH value,
+  Gemini 3.1 / Opus 4.8. Expected: frontier reads smaller than the standard 5×8 assumes. HIGH value,
   cheap.
 - **T2 (A2): Color-channel packing.** Render 2–3 text layers in R/G/B. Can the model read a
   named channel? Even 1.5× is a breakthrough. HIGH risk, HIGH reward.
@@ -54,5 +54,5 @@ or without the pain?
 
 ## Scoring
 Every thesis ships a number with an n or it's cut. Metric = chars per billed token
-(density) AND accuracy (recall %) AND latency (ms). A win must beat narrow-baseline's ~18 char/tok
+(density) AND accuracy (recall %) AND latency (ms). A win must beat the standard ~18 char/tok
 without dropping accuracy below text parity on the target model.

@@ -1,6 +1,6 @@
 // T8: COMBINED PIPELINE — salience(T7) + optimal-geometry(T3) + density-knee(T1).
 // Question 1: does salience let a BIGGER doc fit in one readable flat-billed page?
-// Question 2: head-to-head vs narrow-baseline on the SAME real-ish large doc.
+// Question 2: head-to-head vs narrow on the SAME real-ish large doc.
 import * as R from './render.bundle.mjs';
 import { ask, b64, grade, imageBilledTokens } from './lib.mjs';
 
@@ -30,9 +30,9 @@ console.log(`\n=== T8 combined pipeline | ${MODEL} ===`);
 const FULL=proseCorpus(400), COMP=salience(FULL);
 console.log(`full ${FULL.length}ch, salience ${COMP.length}ch (${(100*COMP.length/FULL.length).toFixed(0)}%)`);
 
-// A) narrow-baseline baseline: 1568w, 728h, its default
+// A) narrow baseline: 1568w, 728h, its default
 const px=await R.renderTextToPngsWithCharLimit(R.reflow(FULL)??FULL, 312, 22000, {aa:true}, 728);
-const bpx=await evalRender(px,'NARROW-BASELINE (full text, 1568w)', FULL.length);
+const bpx=await evalRender(px,'NARROW (full text, 1568w)', FULL.length);
 // B) Nyx T3 geometry, full text
 const t3=await R.renderTextToPngsWithCharLimit(R.reflow(FULL)??FULL, 408, 999999, {aa:true}, 4096);
 const bt3=await evalRender(t3,'NYX-T3 (full text, 2048w 1pg)', FULL.length);
@@ -40,4 +40,4 @@ const bt3=await evalRender(t3,'NYX-T3 (full text, 2048w 1pg)', FULL.length);
 const t8=await R.renderTextToPngsWithCharLimit(R.reflow(COMP)??COMP, 408, 999999, {aa:true}, 4096);
 const bt8=await evalRender(t8,'NYX-T8 (salience + 2048w 1pg)', COMP.length);
 
-console.log(`\n>>> T8 vs narrow-baseline: ${bt8} vs ${bpx} tokens = ${((1-bt8/bpx)*100).toFixed(0)}% fewer`);
+console.log(`\n>>> T8 vs narrow: ${bt8} vs ${bpx} tokens = ${((1-bt8/bpx)*100).toFixed(0)}% fewer`);

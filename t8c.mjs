@@ -1,5 +1,5 @@
-// Nyx method vs narrow-baseline on Opus & GPT (pixel-scaling billing). Here the geometry trick
-// can't help; test if density-knee + salience still beat narrow-baseline.
+// Nyx method vs narrow on Opus & GPT (pixel-scaling billing). Here the geometry trick
+// can't help; test if density-knee + salience still beat narrow.
 import * as R from './render.bundle.mjs';
 import { ask, b64, grade, imageBilledTokens } from './lib.mjs';
 function prose(n){const f=[];for(let i=0;i<n;i++)f.push(`The service worker_${i} deployed to zone_${i%8} has status ${i%4===0?'degraded':'healthy'} latency ${50+(i*3)%400} ms.`);
@@ -19,8 +19,8 @@ async function ev(imgs,label,src){
 }
 console.log(`\n=== ${MODEL} | full ${FULL.length}ch salience ${COMP.length}ch ===`);
 const px=await R.renderTextToPngsWithCharLimit(R.reflow(FULL)??FULL,312,22000,{aa:true},728);
-const bpx=await ev(px,'NARROW-BASELINE (1568w,728h,full)',FULL.length);
+const bpx=await ev(px,'NARROW (1568w,728h,full)',FULL.length);
 // Nyx for pixel-billed providers: minimal pixels via density-knee + salience, keep 1568 width
 const nyx=await R.renderTextToPngsWithCharLimit(R.reflow(COMP)??COMP,312,22000,{aa:true},728);
 const bn=await ev(nyx,'NYX (salience+knee, min-pixel)',COMP.length);
-console.log(`>>> Nyx ${bn} vs narrow-baseline ${bpx} = ${((1-bn/bpx)*100).toFixed(0)}% fewer`);
+console.log(`>>> Nyx ${bn} vs narrow ${bpx} = ${((1-bn/bpx)*100).toFixed(0)}% fewer`);

@@ -1,4 +1,4 @@
-// Head-to-head: narrow-baseline geometry vs Nyx-optimal (wide single page) on Gemini, SAME 22k corpus
+// Head-to-head: narrow geometry vs Nyx-optimal (wide single page) on Gemini, SAME 22k corpus
 import * as R from './render.bundle.mjs';
 import { ask, b64, grade, imageBilledTokens } from './lib.mjs';
 function corpus(n){const l=[];for(let i=0;i<n;i++)l.push(`row ${i}: item_${i} status=${i%3===0?'active':'idle'} weight=${(i*7)%100} tag=grp${i%12}`);
@@ -15,10 +15,10 @@ async function measure(imgs,label){
   console.log(`${label}: ${imgs.length}p [${imgs.map(i=>i.width+'x'+i.height).join(',')}] billed=${billed} density=${(C.length/billed).toFixed(1)} acc=[${accs.join(',')}]`);
   return billed;
 }
-// narrow-baseline: 312 cols (1568w), 22k cap, 728 tall
-const narrow-baseline=await R.renderTextToPngsWithCharLimit(packed,312,22000,{aa:true},728);
-const bp=await measure(narrow-baseline,'NARROW-BASELINE (1568w,728h)');
+// narrow: 312 cols (1568w), 22k cap, 728 tall
+const narrow=await R.renderTextToPngsWithCharLimit(packed,312,22000,{aa:true},728);
+const bp=await measure(narrow,'NARROW (1568w,728h)');
 // nyx-optimal: 468 cols wide single page, 4096 tall cap
 const nyx=await R.renderTextToPngsWithCharLimit(packed,468,999999,{aa:true},4096);
 const bn=await measure(nyx,'NYX-OPT (wide 1pg)');
-console.log(`\n>>> Nyx uses ${bn} vs narrow-baseline ${bp} tokens = ${((1-bn/bp)*100).toFixed(0)}% fewer`);
+console.log(`\n>>> Nyx uses ${bn} vs narrow ${bp} tokens = ${((1-bn/bp)*100).toFixed(0)}% fewer`);

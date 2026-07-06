@@ -1,4 +1,4 @@
-// DEFINITIVE head-to-head: Nyx (all findings) vs narrow-baseline vs TEXT, large realistic doc, Gemini.
+// DEFINITIVE head-to-head: Nyx (all findings) vs narrow vs TEXT, large realistic doc, Gemini.
 import * as R from './render.bundle.mjs';
 import { ask, b64, grade, imageBilledTokens } from './lib.mjs';
 function doc(n){const f=[];for(let i=0;i<n;i++)f.push(`The service worker_${i} was deployed to region zone_${i%8} and currently has status ${i%4===0?'degraded':'healthy'} with latency ${50+(i*3)%400} ms over the reporting period.`);
@@ -8,7 +8,7 @@ const STOP=new Set('the a an is are was were be been to of in on at for and or b
 function sal(t){return t.split('\n').map(l=>l.split(/\s+/).filter(w=>!STOP.has(w.toLowerCase().replace(/[^a-z0-9_]/g,''))).join(' ')).join('\n');}
 const Q=[{q:'pool max size?',a:['850']},{q:'pool timeout ms?',a:['4200']},{q:'tax rate?',a:['1.08']},{q:'port?',a:['8443']},{q:'protocol?',a:['grpc']}];
 const MODEL='gemini-3.1-pro-preview', FULL=doc(300), COMP=sal(FULL);
-console.log(`\n=== DEFINITIVE Nyx vs narrow-baseline | ${MODEL} | full ${FULL.length}ch, salience ${COMP.length}ch ===`);
+console.log(`\n=== DEFINITIVE Nyx vs narrow | ${MODEL} | full ${FULL.length}ch, salience ${COMP.length}ch ===`);
 const tt=(await ask(MODEL,[{type:'text',text:FULL+'\nReply OK.'}],1)).usage?.prompt_tokens;
 console.log(`TEXT baseline: ${tt} tokens`);
 async function ev(imgs,label){
@@ -18,6 +18,6 @@ async function ev(imgs,label){
   console.log(`${label}: ${imgs.length}p billed=${billed} (${((1-billed/tt)*100).toFixed(0)}% vs text) acc=[${accs.join(',')}]`);
   return billed;
 }
-const px=await ev(await R.renderTextToPngsWithCharLimit(R.reflow(FULL)??FULL,312,22000,{aa:true},728),'NARROW-BASELINE (1568w,728h)');
+const px=await ev(await R.renderTextToPngsWithCharLimit(R.reflow(FULL)??FULL,312,22000,{aa:true},728),'NARROW (1568w,728h)');
 const nyx=await ev(await R.renderTextToPngsWithCharLimit(R.reflow(COMP)??COMP,468,38000,{aa:true},4096),'NYX (salience+2348w+38k)');
-console.log(`\n>>> Nyx ${nyx} vs narrow-baseline ${px} = ${((1-nyx/px)*100).toFixed(0)}% fewer | vs text = ${((1-nyx/tt)*100).toFixed(0)}% fewer`);
+console.log(`\n>>> Nyx ${nyx} vs narrow ${px} = ${((1-nyx/px)*100).toFixed(0)}% fewer | vs text = ${((1-nyx/tt)*100).toFixed(0)}% fewer`);

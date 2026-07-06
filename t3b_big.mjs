@@ -1,5 +1,5 @@
 // T3b: THE BIG ONE. Gemini bills ~1080 tok FLAT up to 25Mpx. If it can READ text in a
-// huge image, density explodes. Render the SAME corpus at narrow-baseline geometry (1568 wide)
+// huge image, density explodes. Render the SAME corpus at narrow geometry (1568 wide)
 // vs BIG geometry (wider canvas, more chars/page) and compare density + accuracy.
 import * as R from './render.bundle.mjs';
 import { ask, b64, grade, imageBilledTokens } from './lib.mjs';
@@ -21,7 +21,7 @@ const packed=R.reflow(C)??C;
 
 // configs: [cols, maxCharsPerPage, label]. Wider cols = wider image = more chars/page.
 const CONFIGS=[
-  [312, 22000, 'narrow-baseline-safe (1568w, 22k/pg)'],
+  [312, 22000, 'narrow-safe (1568w, 22k/pg)'],
   [312, 90000, 'tall (1568w, 90k/pg)'],
   [624, 90000, 'wide2x (3136w, 90k/pg)'],
   [936, 180000,'wide3x (4704w, 180k/pg)'],

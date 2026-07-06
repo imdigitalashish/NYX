@@ -10,7 +10,7 @@ const data={
 const xmax=26,ymax=5000;
 const X=v=>M.l+v/xmax*pw, Y=v=>M.t+(1-v/ymax)*ph;
 let s=`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" font-family="Segoe UI,Arial" font-size="13"><rect width="${W}" height="${H}" fill="#fff"/>`;
-s+=`<text x="${W/2}" y="30" text-anchor="middle" font-size="17" font-weight="bold">Image billing by size — the discovery that beats narrow-baseline</text>`;
+s+=`<text x="${W/2}" y="30" text-anchor="middle" font-size="17" font-weight="bold">Image billing by size — why image size matters (the key discovery)</text>`;
 for(let y=0;y<=5000;y+=1000){const py=Y(y);s+=`<line x1="${M.l}" y1="${py}" x2="${M.l+pw}" y2="${py}" stroke="#eee"/><text x="${M.l-8}" y="${py+4}" text-anchor="end" fill="#666">${y}</text>`;}
 for(let x=0;x<=25;x+=5){const px=X(x);s+=`<text x="${px}" y="${M.t+ph+20}" text-anchor="middle" fill="#666">${x}</text>`;}
 s+=`<text x="${M.l+pw/2}" y="${H-15}" text-anchor="middle" font-weight="bold">Image size (megapixels)</text>`;

@@ -1,0 +1,212 @@
+[
+  {
+    "name": "report report-1 (LM misroute)",
+    "chars": 22655,
+    "textTokEst": 6473,
+    "per": {
+      "gemini-3.1-pro-preview": {
+        "pages": 1,
+        "billed": 1053,
+        "correct": 3,
+        "nq": 3,
+        "acc": "3/3"
+      },
+      "claude-opus-4.8": {
+        "pages": 2,
+        "billed": 2904,
+        "correct": 3,
+        "nq": 3,
+        "acc": "3/3"
+      }
+    }
+  },
+  {
+    "name": "report report-3 (NIC link fault)",
+    "chars": 18762,
+    "textTokEst": 5361,
+    "per": {
+      "gemini-3.1-pro-preview": {
+        "pages": 1,
+        "billed": 1056,
+        "correct": 3,
+        "nq": 3,
+        "acc": "3/3"
+      },
+      "claude-opus-4.8": {
+        "pages": 1,
+        "billed": 2418,
+        "correct": 2,
+        "nq": 3,
+        "acc": "2/3"
+      }
+    }
+  },
+  {
+    "name": "report report-2 (subsystem-x)",
+    "chars": 22090,
+    "textTokEst": 6311,
+    "per": {
+      "gemini-3.1-pro-preview": {
+        "pages": 1,
+        "billed": 1053,
+        "correct": 1,
+        "nq": 3,
+        "acc": "1/3"
+      },
+      "claude-opus-4.8": {
+        "pages": 2,
+        "billed": 2904,
+        "correct": 2,
+        "nq": 3,
+        "acc": "2/3"
+      }
+    }
+  },
+  {
+    "name": "SLI design-doc-4",
+    "chars": 35926,
+    "textTokEst": 10265,
+    "per": {
+      "gemini-3.1-pro-preview": {
+        "pages": 2,
+        "billed": 2206,
+        "correct": 3,
+        "nq": 3,
+        "acc": "3/3"
+      },
+      "claude-opus-4.8": {
+        "pages": 2,
+        "billed": 4560,
+        "correct": 3,
+        "nq": 3,
+        "acc": "3/3"
+      }
+    }
+  },
+  {
+    "name": "SLI design-doc-5",
+    "chars": 77339,
+    "textTokEst": 22097,
+    "per": {
+      "gemini-3.1-pro-preview": {
+        "pages": 4,
+        "billed": 4389,
+        "correct": 2,
+        "nq": 2,
+        "acc": "2/2"
+      },
+      "claude-opus-4.8": {
+        "pages": 4,
+        "billed": 9810,
+        "correct": 2,
+        "nq": 2,
+        "acc": "2/2"
+      }
+    }
+  },
+  {
+    "name": "SLI design-doc-6",
+    "chars": 29910,
+    "textTokEst": 8546,
+    "per": {
+      "gemini-3.1-pro-preview": {
+        "pages": 2,
+        "billed": 2177,
+        "correct": 2,
+        "nq": 2,
+        "acc": "2/2"
+      },
+      "claude-opus-4.8": {
+        "pages": 2,
+        "billed": 3801,
+        "correct": 2,
+        "nq": 2,
+        "acc": "2/2"
+      }
+    }
+  },
+  {
+    "name": "TTO doc-7 module-a",
+    "chars": 9420,
+    "textTokEst": 2691,
+    "per": {
+      "gemini-3.1-pro-preview": {
+        "pages": 1,
+        "billed": 1098,
+        "correct": 2,
+        "nq": 2,
+        "acc": "2/2"
+      },
+      "claude-opus-4.8": {
+        "pages": 1,
+        "billed": 1245,
+        "correct": 2,
+        "nq": 2,
+        "acc": "2/2"
+      }
+    }
+  },
+  {
+    "name": "TTO doc-8 module-b",
+    "chars": 10425,
+    "textTokEst": 2979,
+    "per": {
+      "gemini-3.1-pro-preview": {
+        "pages": 1,
+        "billed": 1053,
+        "correct": 2,
+        "nq": 2,
+        "acc": "2/2"
+      },
+      "claude-opus-4.8": {
+        "pages": 1,
+        "billed": 1383,
+        "correct": 2,
+        "nq": 2,
+        "acc": "2/2"
+      }
+    }
+  },
+  {
+    "name": "TTO doc-9 OpenAI Tenant",
+    "chars": 8925,
+    "textTokEst": 2550,
+    "per": {
+      "gemini-3.1-pro-preview": {
+        "pages": 1,
+        "billed": 1000,
+        "correct": 2,
+        "nq": 2,
+        "acc": "2/2"
+      },
+      "claude-opus-4.8": {
+        "pages": 1,
+        "billed": 1176,
+        "correct": 2,
+        "nq": 2,
+        "acc": "2/2"
+      }
+    }
+  },
+  {
+    "name": "TTO doc-10 OpenAI Stream",
+    "chars": 10445,
+    "textTokEst": 2984,
+    "per": {
+      "gemini-3.1-pro-preview": {
+        "pages": 1,
+        "billed": 1053,
+        "correct": 2,
+        "nq": 2,
+        "acc": "2/2"
+      },
+      "claude-opus-4.8": {
+        "pages": 1,
+        "billed": 1383,
+        "correct": 1,
+        "nq": 2,
+        "acc": "1/2"
+      }
+    }
+  }
+]

@@ -1,0 +1,192 @@
+[
+  {
+    "name": "report report-1 (LM misroute)",
+    "chars": 22655,
+    "textTokEst": 6473,
+    "per": {
+      "gemini-3.1-pro-preview": {
+        "pages": 1,
+        "billed": 1053,
+        "acc": "4/4",
+        "accNum": 1
+      },
+      "claude-opus-4.8": {
+        "pages": 2,
+        "billed": 2904,
+        "acc": "5/4",
+        "accNum": 1.25
+      }
+    }
+  },
+  {
+    "name": "report report-3 (NIC link fault)",
+    "chars": 18762,
+    "textTokEst": 5361,
+    "per": {
+      "gemini-3.1-pro-preview": {
+        "pages": 1,
+        "billed": 1056,
+        "acc": "5/4",
+        "accNum": 1.25
+      },
+      "claude-opus-4.8": {
+        "pages": 1,
+        "billed": 2418,
+        "acc": "5/4",
+        "accNum": 1.25
+      }
+    }
+  },
+  {
+    "name": "report report-2 (subsystem-x)",
+    "chars": 22090,
+    "textTokEst": 6311,
+    "per": {
+      "gemini-3.1-pro-preview": {
+        "pages": 1,
+        "billed": 1053,
+        "acc": "4/4",
+        "accNum": 1
+      },
+      "claude-opus-4.8": {
+        "pages": 2,
+        "billed": 2904,
+        "acc": "5/4",
+        "accNum": 1.25
+      }
+    }
+  },
+  {
+    "name": "report report-2 (claude report)",
+    "chars": 12818,
+    "textTokEst": 3662,
+    "per": {
+      "gemini-3.1-pro-preview": {
+        "pages": 1,
+        "billed": 1060,
+        "acc": "2/2",
+        "accNum": 1
+      },
+      "claude-opus-4.8": {
+        "pages": 1,
+        "billed": 1659,
+        "acc": "2/2",
+        "accNum": 1
+      }
+    }
+  },
+  {
+    "name": "TTO one-pager doc-7",
+    "chars": 9463,
+    "textTokEst": 2704,
+    "per": {
+      "gemini-3.1-pro-preview": {
+        "pages": 1,
+        "billed": 1098,
+        "acc": "2/2",
+        "accNum": 1
+      },
+      "claude-opus-4.8": {
+        "pages": 1,
+        "billed": 1245,
+        "acc": "2/2",
+        "accNum": 1
+      }
+    }
+  },
+  {
+    "name": "TTO one-pager 755981689",
+    "chars": 12536,
+    "textTokEst": 3582,
+    "per": {
+      "gemini-3.1-pro-preview": {
+        "pages": 1,
+        "billed": 1080,
+        "acc": "2/2",
+        "accNum": 1
+      },
+      "claude-opus-4.8": {
+        "pages": 1,
+        "billed": 1590,
+        "acc": "2/2",
+        "accNum": 1
+      }
+    }
+  },
+  {
+    "name": "TTO one-pager doc-8",
+    "chars": 7602,
+    "textTokEst": 2172,
+    "per": {
+      "gemini-3.1-pro-preview": {
+        "pages": 1,
+        "billed": 1080,
+        "acc": "2/2",
+        "accNum": 1
+      },
+      "claude-opus-4.8": {
+        "pages": 1,
+        "billed": 969,
+        "acc": "2/2",
+        "accNum": 1
+      }
+    }
+  },
+  {
+    "name": "TTO one-pager doc-9",
+    "chars": 7926,
+    "textTokEst": 2265,
+    "per": {
+      "gemini-3.1-pro-preview": {
+        "pages": 1,
+        "billed": 1080,
+        "acc": "1/2",
+        "accNum": 0.5
+      },
+      "claude-opus-4.8": {
+        "pages": 1,
+        "billed": 1038,
+        "acc": "1/2",
+        "accNum": 0.5
+      }
+    }
+  },
+  {
+    "name": "TTO one-pager 759789961",
+    "chars": 8527,
+    "textTokEst": 2436,
+    "per": {
+      "gemini-3.1-pro-preview": {
+        "pages": 1,
+        "billed": 1024,
+        "acc": "2/2",
+        "accNum": 1
+      },
+      "claude-opus-4.8": {
+        "pages": 1,
+        "billed": 1107,
+        "acc": "2/2",
+        "accNum": 1
+      }
+    }
+  },
+  {
+    "name": "TTO one-pager 760373336",
+    "chars": 9310,
+    "textTokEst": 2660,
+    "per": {
+      "gemini-3.1-pro-preview": {
+        "pages": 1,
+        "billed": 1000,
+        "acc": "1/2",
+        "accNum": 0.5
+      },
+      "claude-opus-4.8": {
+        "pages": 1,
+        "billed": 1176,
+        "acc": "1/2",
+        "accNum": 0.5
+      }
+    }
+  }
+]

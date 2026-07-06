@@ -67,7 +67,8 @@ node render.mjs --provider gemini --multifile  <many-files> # whole codebase, on
 - **Latency:** ~3× slower wall-clock. Use for cost-sensitive / batch / huge-context work, not
   latency-critical interactive turns.
 - **Lossy:** ~85% verbatim, not 100%. For must-be-exact IDs, read as text.
-- **Model-dependent:** best on Gemini 3.1 Pro; works on Opus 4.8 at lower savings; some vision encoders read dense renders better than others.
+- **Model-dependent:** best on Gemini 3.1 Pro; works on Opus 4.8 at lower savings; some
+  vision encoders read dense renders better than others.
 
 ## What we tried that DIDN'T work (so you don't have to)
 
